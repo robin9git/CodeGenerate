@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.rgi.xinnc.prod.dao.XncSalePackageDescDao">
+
+	<!-- Result Map -->
+	<resultMap id="BaseResultMap" type="com.rgi.xinnc.prod.entity.XncSalePackageDesc">
+		 <result column="id" property="id" />
+		 <result column="img_url" property="img_url" />
+		 <result column="description" property="description" />
+		 <result column="status" property="status" />
+		 <result column="add_time" property="add_time" />
+		 <result column="package_id" property="package_id" />
+		 <result column="disp_orders" property="disp_orders" />
+			</resultMap>
+
+	<!-- xnc_sale_package_desc table all fields -->
+	<sql id="Base_Column_List">
+		id,img_url,description,status,add_time,package_id,disp_orders
+	</sql>
+
+	<!-- 查询条件 -->
+	<sql id="Example_Where_Clause">
+		where 1=1
+		<trim suffixOverrides=",">
+									<if test="id != null and id != ''">
+				and id = #{id}
+			</if>
+									<if test="img_url != null and img_url != ''">
+				and img_url = #{img_url}
+			</if>
+									<if test="description != null and description != ''">
+				and description = #{description}
+			</if>
+									<if test="status != null and status != ''">
+				and status = #{status}
+			</if>
+									<if test="add_time != null and add_time != ''">
+				and add_time = #{add_time}
+			</if>
+									<if test="package_id != null and package_id != ''">
+				and package_id = #{package_id}
+			</if>
+									<if test="disp_orders != null and disp_orders != ''">
+				and disp_orders = #{disp_orders}
+			</if>
+					</trim>
+	</sql>
+	
+	<!-- 分页查询条件 -->
+	<sql id="Example_Where_Clause_Page">
+		where 1=1
+		<trim suffixOverrides=",">
+									<if test="id != null and id != ''">
+				and id = #{id}
+			</if>
+									<if test="img_url != null and img_url != ''">
+				and img_url = #{img_url}
+			</if>
+									<if test="description != null and description != ''">
+				and description = #{description}
+			</if>
+									<if test="status != null and status != ''">
+				and status = #{status}
+			</if>
+									<if test="add_time != null and add_time != ''">
+				and add_time = #{add_time}
+			</if>
+									<if test="package_id != null and package_id != ''">
+				and package_id = #{package_id}
+			</if>
+									<if test="disp_orders != null and disp_orders != ''">
+				and disp_orders = #{disp_orders}
+			</if>
+					</trim>
+	</sql>
+
+	<!-- 插入记录 -->
+	<insert id="add" parameterType="Object" useGeneratedKeys="true" keyProperty="id">
+		insert into xnc_sale_package_desc(id,img_url,description,status,add_time,package_id,disp_orders)
+ values(#{id},#{img_url},#{description},#{status},#{add_time},#{package_id},#{disp_orders})
+	</insert>
+	
+	<!-- 删除记录 -->
+	<delete id="delete" parameterType="Object">
+		delete 	 from xnc_sale_package_desc where id = #{id}
+	</delete>
+	
+	<!-- 根据id，修改记录 -->
+	<update id="updateById" parameterType="Object">
+		update xnc_sale_package_desc set img_url=#{img_url},description=#{description},status=#{status},add_time=#{add_time},package_id=#{package_id},disp_orders=#{disp_orders} where id=#{id}
+	</update>
+
+	<!-- 修改记录，只修改只不为空的字段 -->
+	<update id="updateByObject" parameterType="Object">
+		update xnc_sale_package_desc set 
+	<trim  suffixOverrides="," >
+	<if test="img_url != null  ">
+		img_url=#{img_url},
+	</if>
+	<if test="description != null  ">
+		description=#{description},
+	</if>
+	<if test="status != null  ">
+		status=#{status},
+	</if>
+	<if test="add_time != null  ">
+		add_time=#{add_time},
+	</if>
+	<if test="package_id != null  ">
+		package_id=#{package_id},
+	</if>
+	<if test="disp_orders != null  ">
+		disp_orders=#{disp_orders},
+	</if>
+	</trim> where id=#{id}
+	</update>
+
+	<!-- 根据id查询单条记录 -->
+	<select id="queryById" resultMap="BaseResultMap" parameterType="Object">
+		select <include refid="Base_Column_List" /> 
+	 from xnc_sale_package_desc where id = #{id}
+	</select>
+
+	<!-- 根据非ID 字段查询单条记录 -->
+	<select id="queryByObject" resultMap="BaseResultMap" parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from xnc_sale_package_desc
+		<include refid="Example_Where_Clause" />
+	</select>
+	
+	<!-- 根据实体类对象查询列表 -->
+	<select id="queryListByObject" resultMap="BaseResultMap" parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from xnc_sale_package_desc
+		<include refid="Example_Where_Clause" />
+	</select>
+	
+	<!-- 分页查询列表 -->
+	<select id="queryList4Page" resultMap="BaseResultMap" parameterType="Object">
+		select <include refid="Base_Column_List" /> from xnc_sale_package_desc
+		<include refid="Example_Where_Clause_Page" />
+		<choose>
+			<when test="page !=null and page.orderBy != null and page.orderBy != ''">
+				ORDER BY ${page.orderBy}
+			</when>
+			<otherwise>
+				ORDER BY id DESC
+			</otherwise>
+		</choose>
+	</select>
+
+	<!-- 查询记录数 -->
+	<select id="queryAmount" resultType="java.lang.Long" parameterType="Object">
+		select count(1) from xnc_sale_package_desc
+		<include refid="Example_Where_Clause_Page" />
+	</select>
+	
+	<!-- 查询所有记录 -->
+	<select id="queryAllList" resultMap="BaseResultMap" parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from xnc_sale_package_desc
+		order by id desc
+	</select>
+		
+</mapper>
