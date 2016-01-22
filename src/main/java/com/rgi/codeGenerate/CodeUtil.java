@@ -20,20 +20,6 @@ public class CodeUtil {
 	public static String databaseName = "xnc_production";
 	public static String username = "root";
 	public static String password = "abc@123";
-//	public static String tableName = "logistics_dispatch_center";
-//	public static String tableName = "logistics_dispatch_freqency";
-//	public static String tableName = "logistics_dispatch_plan";
-//	public static String tableName = "product_area";
-//	public static String tableName = "product_category";
-//	public static String tableName = "product_components";
-//	public static String tableName = "product_imgs";
-//	public static String tableName = "product_info";
-//	public static String tableName = "product_inventory";
-//	public static String tableName = "product_library_record";
-//	public static String tableName = "product_storage_record";
-//	public static String tableName = "product_vender";
-//	public static String tableName = "products_categorys";
-//	public static String tableName = "xnc_user_level";
 	public static String tableName = "xnc_sale_package_desc";
 	
 	/**
